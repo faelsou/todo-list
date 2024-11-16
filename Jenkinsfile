@@ -23,29 +23,29 @@ pipeline {
                     set -e
 
                     # Atualizar pacotes e instalar pré-requisitos
-                    apt update -y
-                    apt install -y apt-transport-https ca-certificates curl software-properties-common
+                    apt-get update -y
+                    apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
 
-                    # Adicionar chave GPG e repositório oficial para Debian
-                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-                    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+                    # Adicionar chave GPG do Docker e repositório oficial para Debian
+                    curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+                    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+
                     # Atualizar repositórios e instalar Docker
-                    apt update -y
-                    apt install -y docker-ce docker-ce-cli containerd.io
+                    apt-get update -y
+                    apt-get install -y docker-ce docker-ce-cli containerd.io
 
-                    # Verificar a instalação do Docker
+                    # Verificar instalação
                     docker --version
                     '''
                 }
             }
         }
-        stage('Verify Docker') {
+        stage('Verify Docker Installation') {
             steps {
                 script {
                     sh '''
-                    # Mostrar a versão do Docker e verificar se está funcionando
+                    # Exibir versão do Docker
                     docker --version
-                    docker ps || true # Ignorar erro caso nenhum container esteja em execução
                     '''
                 }
             }
