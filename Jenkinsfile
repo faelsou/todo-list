@@ -46,15 +46,6 @@ pipeline {
                 }
             }
         }
-        stage('Verify Docker') {
-            steps {
-                script {
-                    // Teste se o Docker está funcionando corretamente
-                    sh 'docker --version'
-                    sh 'docker ps'
-                }
-            }
-        }
     
  //       stage('Build Docker Image') {
  //           steps {
