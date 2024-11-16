@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/faelsou/todo-list-reactjs.git'
+                git branch: 'main', url: 'https://github.com/faelsou/todo-list.git'
             }
         }
         stage('Install Dependencies') {
@@ -60,7 +60,7 @@ pipeline {
                 script {
                     // Faz o push da imagem para um repositório remoto (ex: DockerHub)
                     sh """
-                    docker login -u <SEU_USUARIO> -p <SUA_SENHA>
+                    docker login -u faelsouz -p 061603F@tim@
                     docker push ${DOCKER_IMAGE}
                     """
                 }
@@ -72,8 +72,8 @@ pipeline {
                 script {
                     // Aplica os manifestos Kubernetes
                     sh """
-                    kubectl apply -f k8s/deployment.yaml -n ${KUBERNETES_NAMESPACE}
-                    kubectl apply -f k8s/service.yaml -n ${KUBERNETES_NAMESPACE}
+                    kubectl apply -f k8s/dev/todo-list-deployment.yaml -n ${KUBERNETES_NAMESPACE}
+                    kubectl apply -f k8s/dev/todo-list-service.yaml -n ${KUBERNETES_NAMESPACE}
                     """
                 }
             }
