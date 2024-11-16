@@ -2,33 +2,6 @@ pipeline {
     agent any
 
     environment {
-        NODE_ENV = 'production'
-        DEPLOY_DIR = '/var/www/todo-list-react'
-        DOCKER_IMAGE = "minikube-registry.local/faelsou/todo-list-web:1.1:${env.BUILD_ID}"
-        DOCKER_REGISTRY = "minikube-registry.local"
-    }
-    stages {
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/faelsou/todo-list.git'
-            }
-        }
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-    }
-    
-}pipeline {
-    agent any
-
-    environment {
         DOCKER_IMAGE = "faelsouz/todo-list-reactjs-app:1.1"
         KUBERNETES_DEPLOYMENT = "todo-list-deployment"
         KUBERNETES_NAMESPACE = "default"
