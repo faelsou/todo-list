@@ -16,7 +16,7 @@ pipeline {
                 }
             }
         }
-        tage('Install Docker') {
+        stage('Install Docker') { // Corrigido o nome do estágio
             steps {
                 script {
                     sh '''
@@ -35,6 +35,14 @@ pipeline {
                     # Verificar instalação
                     docker --version
                     '''
+                }
+            }
+        }
+        stage('Verify Docker') {
+            steps {
+                script {
+                    sh 'docker --version'
+                    sh 'docker ps || true' // Executa docker ps sem erro caso não haja containers rodando
                 }
             }
         }
