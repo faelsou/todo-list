@@ -39,16 +39,16 @@ pipeline {
 //                }
 //            }
 //        }
-        stage('Verify Docker Installation') {
-            steps {
-                script {
-                    sh '''
-                    # Exibir versão do Docker
-                    docker --version
-                    '''
-                }
-            }
-        }
+//        stage('Verify Docker Installation') {
+//            steps {
+//                script {
+//                    sh '''
+//                    # Exibir versão do Docker
+//                    docker --version
+//                    '''
+//                }
+//            }
+//        }
     
  //       stage('Build Docker Image') {
  //           steps {
