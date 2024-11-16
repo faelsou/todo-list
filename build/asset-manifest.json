@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/faelsou/todo-list-reactjs/static/css/main.a4f9a175.css",
+    "main.js": "/faelsou/todo-list-reactjs/static/js/main.bc8c9958.js",
+    "index.html": "/faelsou/todo-list-reactjs/index.html",
+    "main.a4f9a175.css.map": "/faelsou/todo-list-reactjs/static/css/main.a4f9a175.css.map",
+    "main.bc8c9958.js.map": "/faelsou/todo-list-reactjs/static/js/main.bc8c9958.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4f9a175.css",
+    "static/js/main.bc8c9958.js"
+  ]
+}

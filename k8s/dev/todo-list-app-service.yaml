@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-list-app-service
+spec:
+  type: NodePort # Use NodePort para acesso externo em um ambiente de desenvolvimento
+  selector:
+    app: todo-list-app-service
+  ports:
+    - protocol: TCP
+      nodePort: 31000
+      port: 80
+      targetPort: http

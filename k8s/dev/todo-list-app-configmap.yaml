@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: react-app-config
+data:
+  index.html: |
+    <!-- Cole o conteúdo do seu build/index.html aqui -->
+  

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-list-app-configmap
+data:
+  # Variáveis de Ambiente
+  REACT_APP_API_URL: "https://api.example.com"
+  REACT_APP_DEBUG_MODE: "false"
+  # Outras Configurações
+  TITLE: "Todo list React"

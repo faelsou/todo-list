@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list
+spec:
+  replicas: 2  # Número desejado de réplicas
+  selector:
+    matchLabels:
+      app: todo-list
+  template:
+    metadata:
+      labels:
+        app: todo-list
+    spec:
+      containers:
+        - name: todo-list
+          image: faelsouz/todo-list-reactjs-app:1.1  # Use a imagem desejada (por exemplo, um servidor web Nginx ou algo que sirva arquivos estáticos)
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "0.5"
+            limits:
+              memory: "512Mi"
+              cpu: "1"

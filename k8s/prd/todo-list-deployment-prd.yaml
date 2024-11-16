@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-list-deployment
+  namespace: tl-prd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo-list
+  template:
+    metadata:
+      labels:
+        app: todo-list
+    spec:
+      containers:
+        - image: faelsouz/todo-list-reactjs-app:1.1
+          name: todo-list
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          livenessProbe:
+            tcpSocket:
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 50 
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe: 
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 50
+            timeoutSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
+          #envFrom:
+          # - configMapRef:
+            #    name: todo-list-app-configmap
