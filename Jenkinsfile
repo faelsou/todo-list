@@ -16,30 +16,24 @@ pipeline {
                 }
             }
         }
-        stage('Install Docker') {
+        tage('Install Docker') {
             steps {
                 script {
                     sh '''
                     # Atualizar pacotes e instalar pré-requisitos
-                    sudo apt update -y
-                    sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+                    apt update -y
+                    apt install -y apt-transport-https ca-certificates curl software-properties-common
 
                     # Adicionar chave GPG do Docker e repositório oficial
-                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-                    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+                    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+                    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
                     # Atualizar repositórios e instalar Docker
-                    sudo apt update -y
-                    sudo apt install -y docker-ce
+                    apt update -y
+                    apt install -y docker-ce
 
                     # Verificar instalação
                     docker --version
-
-                    # Adicionar usuário Jenkins ao grupo Docker
-                    sudo usermod -aG docker $(whoami)
-
-                    # Reiniciar o Docker para garantir a configuração
-                    sudo systemctl restart docker
                     '''
                 }
             }
