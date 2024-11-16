@@ -23,16 +23,16 @@ pipeline {
                     set -e
 
                     # Atualizar pacotes e instalar pré-requisitos
-                    apt-get update -y
-                    apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release
+                    apt update -y
+                    apt install -y apt-transport-https ca-certificates curl gnupg lsb-release
 
                     # Adicionar chave GPG e repositório oficial para Debian
                     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
                     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
                     # Atualizar repositórios e instalar Docker
-                    apt-get update -y
-                    apt-get install -y docker-ce docker-ce-cli containerd.io
+                    apt update -y
+                    apt install -y docker-ce docker-ce-cli containerd.io
 
                     # Verificar a instalação do Docker
                     docker --version
