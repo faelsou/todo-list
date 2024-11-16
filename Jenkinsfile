@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "faelsouz/todo-list-reactjs-app:1.1"
         KUBERNETES_DEPLOYMENT = "todo-list-deployment"
-        KUBERNETES_NAMESPACE = "default"
+        KUBERNETES_NAMESPACE = "tl-dev"
     }
 
     stages {
@@ -16,7 +16,14 @@ pipeline {
                 }
             }
         }
-
+        stage('Test Docker') {
+            steps {
+                script {
+                    sh 'docker --version'
+                    sh 'docker ps'
+                }
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
