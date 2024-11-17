@@ -50,16 +50,16 @@ pipeline {
 //            }
 //        }
     
- //       stage('Build Docker Image') {
- //           steps {
- //               script {
- //                   // Constrói a imagem Docker localmente
- //                   sh """
- //                   docker build -t ${DOCKER_IMAGE} .
- //                   """
- //               }
- //           }
-//        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                   // Constrói a imagem Docker localmente
+                    sh """
+                    docker build -t ${DOCKER_IMAGE} .
+                    """
+                }
+            }
+        }
 
 //        stage('Push Docker Image') {
   //          steps {
