@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    sudo usermod -aG docker jenkins
+                    usermod -aG docker jenkins
                     docker run --name jenkins-docker --rm -d \
                     -u root \
                     -p 8080:8080 \
