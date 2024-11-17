@@ -70,7 +70,7 @@ pipeline {
                 script {
                    // Constrói a imagem Docker localmente
                     sh """
-                    docker build -t ${DOCKER_IMAGE} .
+                    'docker build -t faelsouz/todo-list-reactjs-app:1.1 .'
                     """
                 }
             }
